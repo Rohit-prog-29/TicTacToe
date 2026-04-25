@@ -16,20 +16,9 @@ public class TicTacToe {
         return new int[]{row, col};
     }
 
-    // ===== UC5: Validate Move =====
+    // UC5
     public static boolean isValidMove(char[][] board, int row, int col) {
-
-        // Boundary check
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
-        }
-
-        // Cell empty check
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
+        return (row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == '-');
     }
 
     public static void main(String[] args) {
@@ -47,24 +36,27 @@ public class TicTacToe {
         // UC2: Toss
         Random random = new Random();
         int currentPlayer = (random.nextInt(2) == 0) ? 1 : 2;
+        char player1Symbol = 'X';
+        char player2Symbol = 'O';
+
         System.out.println("Player " + currentPlayer + " starts");
 
-        // UC3: Input
+        // UC3
         int slot = getUserSlot(scanner);
 
-        // UC4: Convert
+        // UC4
         int[] pos = getRowCol(slot);
         int row = pos[0];
         int col = pos[1];
 
-        // ===== UC5: Validate =====
+        // UC5
         if (isValidMove(board, row, col)) {
-            System.out.println("Valid Move ✅");
+            System.out.println("Valid Move");
         } else {
-            System.out.println("Invalid Move ❌");
+            System.out.println("Invalid Move");
         }
 
-        // Display board
+        // Display board (UC1)
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(board[i][j] + " ");
